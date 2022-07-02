@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
-import { mergeRefs } from "react-merge-refs";
 import { useResizeDetector } from "react-resize-detector";
 import type { TickerProps } from "./Ticker.types";
-import { useSyncAnimations } from "./utils";
+import { mergeRefs, useSyncAnimations } from "./utils";
 import "./styles.scss";
 
 const Ticker = React.forwardRef<HTMLDivElement, TickerProps>(
