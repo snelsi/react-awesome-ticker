@@ -3,7 +3,7 @@ import { mergeRefs } from "react-merge-refs";
 import { useResizeDetector } from "react-resize-detector";
 import type { TickerProps } from "./Ticker.types";
 import { useSyncAnimations } from "./utils";
-import "./styles.css";
+import "./styles.scss";
 
 const Ticker = React.forwardRef<HTMLDivElement, TickerProps>(
   (
@@ -79,7 +79,7 @@ const Ticker = React.forwardRef<HTMLDivElement, TickerProps>(
 
     return (
       <div
-        className={`react-awesome-ticker ${className}`}
+        className={`react-awesome-ticker ${className || ""}`}
         style={containerStyle}
         data-play={!!play}
         data-mode={mode}
