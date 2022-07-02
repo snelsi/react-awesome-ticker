@@ -1,0 +1,89 @@
+/* Animation from Right To Left ⬅️ */
+@keyframes rightToLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Animation from Left To Right ➡️ */
+@keyframes leftToRight {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Base styles for the ticker wrapper */
+.react-awesome-ticker {
+  --ticker-play-state: paused;
+  --ticker-direction: normal;
+  --ticker-iteration-count: infinite;
+  --ticker-animation-delay: 0s;
+
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+/* Base styles for the ticker item */
+.react-awesome-ticker > div {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: inherit;
+  flex: 0 0 auto;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+  will-change: transform;
+
+  animation-delay: var(--ticker-animation-delay, 0s);
+  animation-timing-function: linear;
+  animation-play-state: var(--ticker-play-state, paused);
+  animation-duration: var(--ticker-animation-duration, 0s);
+  animation-direction: var(--ticker-direction, normal);
+  animation-iteration-count: var(--ticker-iteration-count, infinite);
+}
+
+/* Pause animation if 'data-play' is false */
+.react-awesome-ticker[data-play="true"] {
+  --ticker-play-state: running;
+}
+
+/* Pause animation on hover/focus/click */
+.react-awesome-ticker[data-pause-on-hover="true"]:hover,
+.react-awesome-ticker[data-pause-on-focus="true"]:focus-within,
+.react-awesome-ticker[data-pause-on-click="true"]:active {
+  --ticker-play-state: paused;
+}
+
+/* Hide ticker's content on the first render until container's width is calculated */
+.react-awesome-ticker[data-visible="false"] * {
+  opacity: 0;
+}
+
+/* In 'loop' mode content should take at least 100% of container's width */
+.react-awesome-ticker[data-mode="loop"] > div {
+  min-width: 100%;
+}
+
+/* Directions */
+.react-awesome-ticker[data-direction="left"] > div {
+  animation-name: rightToLeft;
+}
+.react-awesome-ticker[data-direction="right"] > div {
+  animation-name: leftToRight;
+}

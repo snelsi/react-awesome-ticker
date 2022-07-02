@@ -1,0 +1,66 @@
+{
+  "name": "react-awesome-ticker",
+  "version": "0.0.1",
+  "description": "🐍 Smart Modern Lightweight Fully-Typed CSS React Ticker",
+  "license": "MIT",
+  "author": "Roman Zhuravlov",
+  "repository": "https://github.com/snelsi/react-awesome-ticker",
+  "homepage": "https://github.com/snelsi/react-awesome-ticker",
+  "keywords": [
+    "react",
+    "ticker",
+    "marquee",
+    "component",
+    "typescript",
+    "animation",
+    "css"
+  ],
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "build": "yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "prettier": "prettier --write .",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix",
+    "fix": "npm run prettier && npm run lint-fix",
+    "pre-commit": "npm run lint && lint-staged",
+    "post-commit": "git update-index --again"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-merge-refs": "^2.0.1",
+    "react-resize-detector": "^7.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.3",
+    "@typescript-eslint/parser": "^5.30.3",
+    "eslint": "^8.19.0",
+    "eslint-config-alloy": "^4.6.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.30.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "pretty-quick": "^3.1.3",
+    "typescript": "^4.7.4"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "pretty-quick --staged"
+    ]
+  }
+}
