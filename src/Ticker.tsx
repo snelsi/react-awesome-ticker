@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useResizeDetector } from "react-resize-detector";
 import type { TickerProps } from "./Ticker.types";
 import { mergeRefs, useSyncAnimations } from "./utils";
-import "./styles.scss";
+import { ReactAwesomeTicker } from "./styles";
 
 const Ticker = React.forwardRef<HTMLDivElement, TickerProps>(
   (
@@ -64,20 +64,23 @@ const Ticker = React.forwardRef<HTMLDivElement, TickerProps>(
     }
 
     // Repeat main content 'contentRepeats' times
-    let repeats: React.ReactNode[] =
-      contentRepeats > 0
-        ? Array.from(Array(contentRepeats).keys()).map((i) => (
-            <div aria-hidden="true" key={i}>
-              {children}
-            </div>
-          ))
-        : null;
+    const repeats: React.ReactNode[] = useMemo(
+      () =>
+        contentRepeats > 0
+          ? Array.from(Array(contentRepeats).keys()).map((i) => (
+              <div aria-hidden="true" key={i}>
+                {children}
+              </div>
+            ))
+          : null,
+      [children, contentRepeats],
+    );
 
     // There can be desynchronization of items animation, so we manually reset it on params update
     useSyncAnimations(containerRef, [contentWidth, contentRepeats, duration, speed, direction]);
 
     return (
-      <div
+      <ReactAwesomeTicker
         className={`react-awesome-ticker ${className || ""}`}
         style={containerStyle}
         data-play={!!play}
@@ -95,9 +98,11 @@ const Ticker = React.forwardRef<HTMLDivElement, TickerProps>(
         </div>
 
         {repeats}
-      </div>
+      </ReactAwesomeTicker>
     );
   },
 ) as React.FC<TickerProps>;
 
-export default Ticker;
+Ticker.displayName = "Ticker";
+
+export default React.memo(Ticker);

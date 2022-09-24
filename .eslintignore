@@ -1,4 +1,5 @@
-.vscode
 node_modules
-lib
-rollup.config.js
+**/.next/**
+**/_next/**
+next-env.d.ts
+next.config.js

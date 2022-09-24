@@ -38,4 +38,9 @@ export interface TickerProps extends React.HTMLProps<HTMLDivElement> {
    * Extra props to pass directly to content wrapper
    */
   contentWrapperProps?: React.HTMLProps<HTMLDivElement>;
+  /**
+   * Polymorhic prop that configures the rendering tag of the Wrapper
+   * https://styled-components.com/docs/api#as-polymorphic-prop
+   * */
+  as?: any;
 }

@@ -1,7 +1,27 @@
+import styled, { keyframes } from "styled-components";
+
 /* Animation from Right To Left ⬅️ */
+const rightToLeft = keyframes`
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+`;
+
+/* Animation from Left To Right ➡️ */
+const leftToRight = keyframes`
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+`;
 
 /* Base styles for the ticker wrapper */
-.react-awesome-ticker {
+export const ReactAwesomeTicker = styled.div`
   --ticker-play-state: paused;
   --ticker-direction: normal;
   --ticker-iteration-count: infinite;
@@ -17,25 +37,6 @@
   padding: 0;
   position: relative;
   width: 100%;
-
-  @keyframes rightToLeft {
-    from {
-      transform: translateX(0%);
-    }
-    to {
-      transform: translateX(-100%);
-    }
-  }
-
-  /* Animation from Left To Right ➡️ */
-  @keyframes leftToRight {
-    from {
-      transform: translateX(0%);
-    }
-    to {
-      transform: translateX(100%);
-    }
-  }
 
   /* Base styles for the ticker item */
   & > div {
@@ -84,13 +85,13 @@
   &[data-direction="left"] {
     justify-content: flex-start;
     & > div {
-      animation-name: rightToLeft;
+      animation-name: ${rightToLeft};
     }
   }
   &[data-direction="right"] {
     justify-content: flex-end;
     & > div {
-      animation-name: leftToRight;
+      animation-name: ${leftToRight};
     }
   }
-}
+`;
