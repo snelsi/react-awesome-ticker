@@ -64,7 +64,7 @@ const Ticker = React.forwardRef<HTMLDivElement, TickerProps>(
     }
 
     // Repeat main content 'contentRepeats' times
-    const repeats: React.ReactNode[] = useMemo(
+    const repeats: React.ReactNode[] | null = useMemo(
       () =>
         contentRepeats > 0
           ? Array.from(Array(contentRepeats).keys()).map((i) => (

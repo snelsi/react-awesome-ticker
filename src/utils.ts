@@ -18,18 +18,20 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
 
 /** Resets and synchronizes animations of items inside the Ticker  */
 export const useSyncAnimations = (
-  containerRef: React.MutableRefObject<HTMLDivElement>,
+  containerRef: React.MutableRefObject<HTMLDivElement | null>,
   dependencies: any[],
 ) =>
   useIsomorphicLayoutEffect(() => {
     try {
-      containerRef?.current?.childNodes.forEach((node: HTMLElement) => {
-        // https://stackoverflow.com/a/45036752
-        node.style.animation = "none";
-        // Trigger styles reflow
-        // eslint-disable-next-line
-        node.offsetHeight;
-        node.style.animation = "";
+      containerRef?.current?.childNodes.forEach((node) => {
+        if (node instanceof HTMLElement) {
+          // https://stackoverflow.com/a/45036752
+          node.style.animation = "none";
+          // Trigger styles reflow
+          // eslint-disable-next-line
+          node.offsetHeight;
+          node.style.animation = "";
+        }
       });
     } catch {
       // Element unmounted, probably. Ignore
