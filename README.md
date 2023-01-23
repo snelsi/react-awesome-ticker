@@ -45,6 +45,12 @@ const MyTicker = () => (
 
 ```
 
+## This Package is Pure ESM
+
+It cannot be require()'d from CommonJS.
+<br />
+More info [here](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+
 ## TypeScript
 
 The module is written in TypeScript and type definitions are included.
